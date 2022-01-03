@@ -50,7 +50,7 @@ namespace xorstr {
             char str[sizeof(lit.value)]{}; //Keep in mind that if you ever want to remove forced inlining, you should allocate the buffer on the heap.
             unsigned long x{ key };
             for (size_t i = 0; i < sizeof(lit.value); i++) {
-				//As the seed of the xorshift32 is the same, we will get the exact same sequence of characters.
+                //As the seed of the xorshift32 is the same, we will get the exact same sequence of characters.
                 x ^= x << 13;
                 x ^= x >> 17;
                 x ^= x << 5;
@@ -59,11 +59,11 @@ namespace xorstr {
             return str;
         }
 
-		//This NEEDS to be consteval, cuz othervise compiler would just inline it, leaving the string untouched.
+        //This NEEDS to be consteval, cuz othervise compiler would just inline it, leaving the string untouched.
         consteval string_hidden() {
             unsigned long x{ key };
             for (size_t i = 0; i < sizeof(lit.value); i++) {
-				//Here i'm using xorshift32 to generate random characters sequence from a key.
+                //Here i'm using xorshift32 to generate random characters sequence from a key.
                 x ^= x << 13;
                 x ^= x >> 17;
                 x ^= x << 5;
@@ -72,7 +72,7 @@ namespace xorstr {
         }
     };
 
-	//PJW lets us to generate unique keys for every string.
+    //PJW lets us to generate unique keys for every string.
     consteval unsigned long pjw(const char* s) {
         unsigned long h{}, high{};
         while (*s) {
